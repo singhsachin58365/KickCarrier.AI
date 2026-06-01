@@ -1,1 +1,114 @@
 @import "tailwindcss";
+
+:root {
+  --bg-main: #f3f3f3;
+  --bg-card: #ffffff;
+  --bg-navbar: #ffffff;
+  --border-color: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --bg-btn: #f3f4f6;
+  --bg-popup: #ffffff;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.dark-mode {
+  --bg-main: #0f0f1a;
+  --bg-card: #1a1a2e;
+  --bg-navbar: #1a1a2e;
+  --border-color: rgba(255,255,255,0.08);
+  --text-primary: #e8e8f0;
+  --text-secondary: #9ca3af;
+  --bg-btn: rgba(255,255,255,0.08);
+  --bg-popup: #1e1e30;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+/* Dark mode overrides for Tailwind classes */
+.dark-mode .bg-\[#f3f3f3\] {
+  background: var(--bg-main) !important;
+}
+
+.dark-mode .bg-white {
+  background: var(--bg-card) !important;
+}
+
+.dark-mode .border-gray-200 {
+  border-color: var(--border-color) !important;
+}
+
+.dark-mode .text-gray-800,
+.dark-mode .text-gray-700 {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode .text-gray-500,
+.dark-mode .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.dark-mode .bg-gray-100,
+.dark-mode .bg-gray-50 {
+  background: var(--bg-btn) !important;
+}
+
+.dark-mode .shadow-md,
+.dark-mode .shadow-sm,
+.dark-mode .shadow-xl {
+  box-shadow: var(--shadow) !important;
+}
+/* Fix headings in dark mode */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Fix paragraphs in dark mode */
+.dark-mode p {
+  color: var(--text-secondary) !important;
+}
+
+/* Fix span text */
+.dark-mode span {
+  color: inherit;
+}
+
+/* Fix green text - rehne do green */
+.dark-mode .text-green-600 {
+  color: #4ade80 !important;
+}
+
+.dark-mode .text-green-500 {
+  color: #4ade80 !important;
+}
+
+/* Fix black backgrounds - dark mode mein white kar do */
+.dark-mode .bg-black {
+  background: #6366f1 !important;
+}
+
+.dark-mode .text-white {
+  color: #ffffff !important;
+}
+
+/* Fix input fields */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background: var(--bg-btn) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
