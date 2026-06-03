@@ -12,6 +12,7 @@ import Pricing from './pages/Pricing'
 import InterviewReport from './pages/InterviewReport'
 
 // v2
+// v2
 export const ServerUrl = "https://kickcarrier-ai.onrender.com"
 
 function App() {
