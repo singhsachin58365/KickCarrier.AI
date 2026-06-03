@@ -11,7 +11,7 @@ import paymentRouter from "./routes/payment.route.js"
 
 const app = express()
 app.use(cors({
-  origin: ["http://localhost:5173", "https://kick-carrier-ai-yfi6.vercel.app", "https://kick-carrier-ai-yfi6-lyehwnvc8-singhsachin58365-2088s-projects.vercel.app"],
+ origin: ["http://localhost:5173", "https://kick-carrier-ai-yfi6.vercel.app", "https://kick-carrier-ai-yfi6-lyehwnvc8-singhsachin58365-2088s-projects.vercel.app", "https://kick-carrier-ai.vercel.app"],
   credentials: true
 }))
 
