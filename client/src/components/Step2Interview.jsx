@@ -27,7 +27,7 @@ function Step2Interview({ interviewData, onFinish }) {
   );
   const [selectedVoice, setSelectedVoice] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [voiceGender, setVoiceGender] = useState("female");
+  const [voiceGender, setVoiceGender] = useState("male");
   const [subtitle, setSubtitle] = useState("");
 
 
@@ -41,27 +41,14 @@ function Step2Interview({ interviewData, onFinish }) {
       const voices = window.speechSynthesis.getVoices();
       if (!voices.length) return;
 
-      // Try known female voices first
-      const femaleVoice =
-        voices.find(v =>
-          v.name.toLowerCase().includes("zira") ||
-          v.name.toLowerCase().includes("samantha") ||
-          v.name.toLowerCase().includes("female")
-        );
-
-      if (femaleVoice) {
-        setSelectedVoice(femaleVoice);
-        setVoiceGender("female");
-        return;
-      }
-
-      // Try known male voices
-      const maleVoice =
-        voices.find(v =>
-          v.name.toLowerCase().includes("david") ||
-          v.name.toLowerCase().includes("mark") ||
-          v.name.toLowerCase().includes("male")
-        );
+      // Pehle male voice dhundho
+      const maleVoice = voices.find(v =>
+        v.name.toLowerCase().includes("david") ||
+        v.name.toLowerCase().includes("mark") ||
+        v.name.toLowerCase().includes("daniel") ||
+        v.name.toLowerCase().includes("male") ||
+        v.name.toLowerCase().includes("google uk english male")
+      );
 
       if (maleVoice) {
         setSelectedVoice(maleVoice);
@@ -69,9 +56,22 @@ function Step2Interview({ interviewData, onFinish }) {
         return;
       }
 
-      // Fallback: first voice (assume female)
+      // Fallback: female voice
+      const femaleVoice = voices.find(v =>
+        v.name.toLowerCase().includes("zira") ||
+        v.name.toLowerCase().includes("samantha") ||
+        v.name.toLowerCase().includes("female")
+      );
+
+      if (femaleVoice) {
+        setSelectedVoice(femaleVoice);
+        setVoiceGender("female");
+        return;
+      }
+
+      // Last fallback: pehli available voice
       setSelectedVoice(voices[0]);
-      setVoiceGender("female");
+      setVoiceGender("male");
     };
 
     loadVoices();
@@ -101,9 +101,9 @@ function Step2Interview({ interviewData, onFinish }) {
 
       utterance.voice = selectedVoice;
 
-      // Human-like pacing
-      utterance.rate = 0.92;     // slightly slower than normal
-      utterance.pitch = 1.05;    // small warmth
+      // Male human-like pacing
+      utterance.rate = 0.92;
+      utterance.pitch = 0.85;  // Lower pitch = mardana awaaz
       utterance.volume = 1;
 
       utterance.onstart = () => {
@@ -320,11 +320,6 @@ setIsSubmitting(false)
       window.speechSynthesis.cancel();
     };
   }, []);
-
-
-
-
-
 
 
   return (
