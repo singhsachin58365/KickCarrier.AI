@@ -148,7 +148,7 @@ function Navbar() {
                         alignItems: 'center',
                         position: 'relative',
                         transition: 'all 0.3s',
-                        overflow: 'hidden'
+                        overflow: 'visible'   // ← FIX: 'hidden' tha, 'visible' kiya
                     }}>
 
                     {/* Logo */}
