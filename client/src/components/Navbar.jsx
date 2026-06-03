@@ -20,7 +20,6 @@ function Navbar() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    // Load saved theme on mount
     useEffect(() => {
         const saved = localStorage.getItem('theme')
         if (saved === 'dark') {
@@ -120,9 +119,18 @@ function Navbar() {
                     transform: translateX(24px);
                     box-shadow: 0 2px 8px rgba(99,102,241,0.4);
                 }
+                @media (max-width: 640px) {
+                    .navbar-title {
+                        font-size: 16px !important;
+                    }
+                    .credits-btn {
+                        padding: 6px 10px !important;
+                        font-size: 13px !important;
+                    }
+                }
             `}</style>
 
-            <div style={{ background: 'var(--bg-main)', display: 'flex', justifyContent: 'center', padding: '24px 16px 0', transition: 'background 0.3s' }}>
+            <div style={{ background: 'var(--bg-main)', display: 'flex', justifyContent: 'center', padding: '16px 8px 0', transition: 'background 0.3s' }}>
                 <motion.div
                     initial={{opacity: 0, y: -40}}
                     animate={{opacity: 1, y: 0}}
@@ -134,24 +142,25 @@ function Navbar() {
                         borderRadius: '24px',
                         boxShadow: 'var(--shadow)',
                         border: '1px solid var(--border-color)',
-                        padding: '16px 32px',
+                        padding: '12px 16px',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         position: 'relative',
-                        transition: 'all 0.3s'
+                        transition: 'all 0.3s',
+                        overflow: 'hidden'
                     }}>
 
                     {/* Logo */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }} onClick={() => navigate('/')}>
-                        <div style={{ background: darkMode ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : '#111827', color: 'white', padding: '8px', borderRadius: '10px' }}>
-                            <BsRobot size={18}/>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', flexShrink: 0 }} onClick={() => navigate('/')}>
+                        <div style={{ background: darkMode ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : '#111827', color: 'white', padding: '7px', borderRadius: '10px' }}>
+                            <BsRobot size={16}/>
                         </div>
-                        <h1 style={{ fontWeight: 800, fontSize: '20px', color: 'var(--text-primary)', letterSpacing: '-0.5px', fontFamily: "'Inter', 'Segoe UI', sans-serif" }}>KickCarrier.AI</h1>
+                        <h1 className="navbar-title" style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-primary)', letterSpacing: '-0.5px', fontFamily: "'Inter', 'Segoe UI', sans-serif", whiteSpace: 'nowrap' }}>KickCarrier.AI</h1>
                     </div>
 
                     {/* Right side */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', position: 'relative' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', position: 'relative', flexShrink: 0 }}>
 
                         {/* Theme Toggle */}
                         <button className="theme-toggle" onClick={toggleTheme} title={darkMode ? 'Switch to Light' : 'Switch to Dark'}>
@@ -162,27 +171,27 @@ function Navbar() {
 
                         {/* Credits */}
                         <div style={{ position: 'relative' }}>
-                            <button onClick={() => {
+                            <button className="credits-btn" onClick={() => {
                                 if (!userData) { setShowAuth(true); return }
                                 setShowCreditPopup(!showCreditPopup)
                                 setShowUserPopup(false)
                             }} style={{
-                                display: 'flex', alignItems: 'center', gap: '6px',
-                                background: 'var(--bg-btn)', padding: '8px 16px',
+                                display: 'flex', alignItems: 'center', gap: '5px',
+                                background: 'var(--bg-btn)', padding: '7px 12px',
                                 borderRadius: '99px', border: '1px solid var(--border-color)',
                                 color: 'var(--text-primary)', cursor: 'pointer', fontSize: '14px',
                                 transition: 'all 0.2s'
                             }}>
-                                <BsCoin size={18} color={darkMode ? '#a78bfa' : '#374151'}/>
+                                <BsCoin size={16} color={darkMode ? '#a78bfa' : '#374151'}/>
                                 {userData?.credits || 0}
                             </button>
 
                             {showCreditPopup && (
                                 <div style={{
                                     position: 'absolute', right: '-50px', top: 'calc(100% + 10px)',
-                                    width: '240px', background: 'var(--bg-popup)',
+                                    width: '220px', background: 'var(--bg-popup)',
                                     border: '1px solid var(--border-color)', borderRadius: '16px',
-                                    padding: '20px', zIndex: 50, boxShadow: 'var(--shadow)'
+                                    padding: '16px', zIndex: 50, boxShadow: 'var(--shadow)'
                                 }}>
                                     <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '14px' }}>
                                         Need more credits to continue interviews?
@@ -205,13 +214,14 @@ function Navbar() {
                                 setShowUserPopup(!showUserPopup)
                                 setShowCreditPopup(false)
                             }} style={{
-                                width: '36px', height: '36px',
+                                width: '34px', height: '34px',
                                 background: darkMode ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : '#111827',
                                 color: 'white', borderRadius: '50%',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontWeight: 600, fontSize: '14px', border: 'none', cursor: 'pointer'
+                                fontWeight: 600, fontSize: '14px', border: 'none', cursor: 'pointer',
+                                flexShrink: 0
                             }}>
-                                {userData ? userData?.name.slice(0,1).toUpperCase() : <FaUserAstronaut size={15}/>}
+                                {userData ? userData?.name.slice(0,1).toUpperCase() : <FaUserAstronaut size={14}/>}
                             </button>
 
                             {showUserPopup && (
