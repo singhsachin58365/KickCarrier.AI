@@ -130,7 +130,7 @@ function Navbar() {
                 }
             `}</style>
 
-            <div style={{ background: 'var(--bg-main)', display: 'flex', justifyContent: 'center', padding: '16px 8px 0', transition: 'background 0.3s' }}>
+            <div style={{ background: 'var(--bg-navbar)', display: 'flex', justifyContent: 'center', padding: '0', transition: 'background 0.3s' }}>
                 <motion.div
                     initial={{opacity: 0, y: -40}}
                     animate={{opacity: 1, y: 0}}
@@ -139,9 +139,9 @@ function Navbar() {
                         width: '100%',
                         maxWidth: '1152px',
                         background: 'var(--bg-navbar)',
-                        borderRadius: '24px',
-                        boxShadow: 'var(--shadow)',
-                        border: '1px solid var(--border-color)',
+                        borderRadius: '0px',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                        borderBottom: '1px solid var(--border-color)',
                         padding: '12px 16px',
                         display: 'flex',
                         justifyContent: 'space-between',
